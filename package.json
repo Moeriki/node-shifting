@@ -1,6 +1,6 @@
 {
   "name": "shifting",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create APIs that supports callback-style and Promises.",
   "author": "Dieter Luypaert <dieterluypaert@gmail.com>",
   "license": "MIT",
