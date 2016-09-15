@@ -1,6 +1,6 @@
 # Shifting
 
-Shifting allows you to create APIs that supports both callback-style and promises.
+Shifting allows you to create APIs that support both callback-style and promises.
 
 ## Install
 
@@ -8,7 +8,7 @@ Shifting allows you to create APIs that supports both callback-style and promise
 npm install --save shifting
 ```
 
-- Shifting assumes a global `Promise` object for its inner workings. If that's no good, [open an issue](https://github.com/Moeriki/shifting/issues).
+Shifting assumes a global `Promise` object for its inner workings. If that's no good, [open an issue](https://github.com/Moeriki/shifting/issues).
 
 ## Implementation
 
@@ -74,7 +74,7 @@ This function does nothing except returning a `{ from:function }` object.
 
 **`from(source:function|Promise)`** ▶︎ returns `Promise|undefined`
 
-Create a source to pass to Shifting. If shifting received a callback function (see `shifting()`) it will return `undefined`, otherwise a `Promise`.
+Pass a source to Shifting. If `shifting()` (see above) received a callback function it will return `undefined`, otherwise a `Promise`.
 
 <a name="troubleshooting" />
 ## Troubleshooting
