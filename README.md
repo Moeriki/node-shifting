@@ -79,10 +79,10 @@ Pass a source to Shifting. If `shifting()` (see above) received a callback funct
 <a name="troubleshooting" />
 ## Troubleshooting
 
-**shifting warning: callback … is not a function, nor null, nor undefined**
+**shifting(callback) : callback `…` is not a function, nor null, nor undefined**
 
 You need to call `shifting()` with either a callback function or `undefined|null`. Otherwise this error will be logged. This is to hide programming errors.
 
-**from() expects one argument; a function or a Promise, received …**
+**from(source) : source `…` is not a function, nor a Promise**
 
 See implementation examples above.
