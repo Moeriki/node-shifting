@@ -68,11 +68,11 @@ The important part here is that throwing an `Error` will still callback or rejec
 
 ## API
 
-### **`shifting(callback:function|null|undefined)`** ▶︎ return `object { from:function  }`
+**`shifting(callback:function|null|undefined)`** ▶︎ return `object { from:function  }`
 
 This function does nothing except returning a `{ from:function }` object.
 
-### **`from(source:function|Promise)`** ▶︎ returns `Promise|undefined`
+**`from(source:function|Promise)`** ▶︎ returns `Promise|undefined`
 
 Create a source to pass to Shifting. If shifting received a callback function (see `shifting()`) it will return `undefined`, otherwise a `Promise`.
 
