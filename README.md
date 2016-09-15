@@ -86,7 +86,3 @@ You need to call `shifting()` with either a callback function or `undefined|null
 **from() expects one argument; a function or a Promise, received …**
 
 See implementation examples above.
-
-## TODO
-
-* add URL to shifting warning
