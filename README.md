@@ -2,7 +2,7 @@
 
 Shifting allows you to create APIs that support both callback-style and promises.
 
-[![Build Status](https://travis-ci.org/Moeriki/shifting.svg?branch=master)](https://travis-ci.org/Moeriki/shifting) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/shifting/badge.svg)](https://snyk.io/test/github/moeriki/shifting)
+[![Build Status](https://travis-ci.org/Moeriki/shifting.svg?branch=master)](https://travis-ci.org/Moeriki/shifting) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/shifting/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/shifting?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/shifting/badge.svg)](https://snyk.io/test/github/moeriki/shifting)
 
 ## Install
 

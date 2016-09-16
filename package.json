@@ -12,7 +12,8 @@
   "scripts": {
     "lint": "eslint *.js lib/ test/",
     "pretest": "npm run lint",
-    "test": "jest"
+    "test": "jest",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "promise",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "babel-eslint": "6.1.2",
     "babel-jest": "15.0.0",
+    "coveralls": "2.11.13",
     "eslint": "3.5.0",
     "eslint-config-muriki": "5.1.0",
     "eslint-plugin-import": "1.15.0",
