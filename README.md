@@ -2,7 +2,7 @@
 
 Shifting allows you to create APIs that support both callback-style and promises.
 
-[![Build Status](https://travis-ci.org/Moeriki/shifting.svg?branch=master)](https://travis-ci.org/Moeriki/shifting) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/shifting/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/shifting?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/shifting/badge.svg)](https://snyk.io/test/github/moeriki/shifting) [![dependencies Status](https://david-dm.org/moeriki/shifting/status.svg)](https://david-dm.org/moeriki/shifting)
+[![Build Status](https://travis-ci.org/Moeriki/shifting.svg?branch=master)](https://travis-ci.org/Moeriki/shifting) [![Coverage Status](https://coveralls.io/repos/github/Moeriki/shifting/badge.svg?branch=master)](https://coveralls.io/github/Moeriki/shifting?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/moeriki/shifting/badge.svg)](https://snyk.io/test/github/moeriki/shifting) [![dependencies Status](https://david-dm.org/moeriki/shifting/status.svg)](https://david-dm.org/moeriki/shifting) [![Downloads](http://img.shields.io/npm/dm/shifting.svg?style=flat)](https://www.npmjs.org/package/shifting)
 
 ## Install
 
