@@ -27,7 +27,7 @@ function timesTwo(number, callback) {
 
 timesTwo(4).then(console.log); // logs 8
 timesTwo(4, function (err, result) {
-    console.log(result); // logs 8
+  console.log(result); // logs 8
 });
 ```
 
@@ -68,6 +68,57 @@ timesTwo('a string', function (err) {
 
 The important part here is that throwing an `Error` will still callback or reject the `Error`.
 
+## Call / Apply
+
+Shifting allows you to call a function of which you are not sure if it will take a callback arg, or return a Promise, or return synchronously any other value.
+
+```javascript
+// Callback API
+function sum(augend, addend, callback) {
+  callback(null, augend + addend);
+}
+
+// Promise API
+function sum(augend, addend) {
+  return Promise.resolve(augend + addend);
+}
+
+// Synchronous API
+function sum(augend, addend) {
+  return augend + addend;
+}
+```
+
+With any of the above implementations you can use `shifting.apply` / `shifting.call` as such.
+
+```javascript
+shifting.apply(sum, [3, 4]).then(console.log); // logs 7
+shifting.apply(sum, [3, 4], function (err, result) {
+  console.log(result); // logs 7
+});
+
+shifting.call(sum, 3, 4).then(console.log); // logs 7
+shifting.call(sum, 3, 4, function (err, result) {
+  console.log(result); // logs 7
+});
+```
+
+**Binding**
+
+If the called function requires binding you can do it as such.
+
+```javascript
+const myAPI = {
+  hello: 'Bonjour',
+  sayHello: function (name, callback) {
+    callback(null, this.hello + ' ' + name + '!');
+  }
+}
+
+say.call([myAPI, myAPI.sayHello], 'World')
+  .then(console.log); // logs 'Bonjour World!'
+```
+
 ## API
 
 **`shifting(callback:function|null|undefined)`** ▶︎ return `object { from:function  }`
@@ -77,6 +128,10 @@ This function does nothing except returning a `{ from:function }` object.
 **`from(source:function|Promise)`** ▶︎ returns `Promise|undefined`
 
 Pass a source to Shifting. If `shifting()` (see above) received a callback function it will return `undefined`, otherwise a `Promise`.
+
+**`shifting.apply(function|array<context, function>[, array<args...>[, callback]])`** ▶︎ return `Promise|undefined`
+
+**`shifting.call(function|array<context, function>[, args...[, callback]])`** ▶︎ return `Promise|undefined`
 
 <a name="troubleshooting" />
 ## Troubleshooting

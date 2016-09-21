@@ -202,3 +202,193 @@ describe('from()', () => {
   });
 
 });
+
+describe('apply()', () => {
+
+  it('should return callback from callback', (done) => {
+    // setup
+    function sum(augend, addend, cb) {
+      cb(null, augend + addend);
+    }
+    // test
+    shifting.apply(sum, [3, 4], (err, result) => {
+      expect(err).toBe(null);
+      expect(result).toBe(7);
+      done();
+    });
+  });
+
+  it('should return promise from callback', () => {
+    // setup
+    function sum(augend, addend, cb) {
+      cb(null, augend + addend);
+    }
+    // test
+    return shifting.apply(sum, [3, 4])
+      .then((result) => {
+        expect(result).toBe(7);
+      });
+  });
+
+  it('should return callback from promise', (done) => {
+    // setup
+    function sum(augend, addend) {
+      return Promise.resolve(augend + addend);
+    }
+    // test
+    shifting.apply(sum, [3, 4], (err, result) => {
+      expect(err).toBe(null);
+      expect(result).toBe(7);
+      done();
+    });
+  });
+
+  it('should return promise from promise', () => {
+    // setup
+    function sum(augend, addend) {
+      return Promise.resolve(augend + addend);
+    }
+    // test
+    return shifting.apply(sum, [3, 4])
+      .then((result) => {
+        expect(result).toBe(7);
+      });
+  });
+
+  it('should throw if function is not a function', () => {
+    // setup
+    const someObj = {};
+    // test
+    const test = () => shifting.apply(someObj.func, []);
+    expect(test).toThrowError(/undefined is not a function/i);
+  });
+
+  it('should throw if args dont match function length', () => {
+    // setup
+    function sum(augend, addend) {
+      return Promise.resolve(augend + addend);
+    }
+    // test
+    const test = () => shifting.apply(sum, []);
+    expect(test).toThrowError(/cannot determine how to call function/i);
+  });
+
+  it('should allow functions to just return value', () => {
+    // setup
+    function sum(augend, addend) {
+      return augend + addend;
+    }
+    // test
+    return shifting.apply(sum, [3, 4])
+      .then((result) => {
+        expect(result).toBe(7);
+      });
+  });
+
+  it('should allow passing a context with a function', () => {
+    // setup
+    const log = {
+      world: 'world',
+      say(hello, callback) {
+        callback(null, `${hello} ${this.world}!`);
+      },
+    };
+    // test
+    return shifting.apply([log, log.say], ['Hello'])
+      .then((result) => {
+        expect(result).toBe('Hello world!');
+      });
+  });
+
+  it('should allow omitting args with callback', (done) => {
+    // setup
+    function helloWorld(cb) {
+      cb(null, 'Hello world!');
+    }
+    // test
+    return shifting.apply(helloWorld, (err, result) => {
+      expect(err).toBe(null);
+      expect(result).toBe('Hello world!');
+      done();
+    });
+  });
+
+  it('should allow omitting args with Promise', () => {
+    // setup
+    function helloWorld(cb) {
+      cb(null, 'Hello world!');
+    }
+    // test
+    return shifting.apply(helloWorld)
+      .then((result) => {
+        expect(result).toBe('Hello world!');
+      });
+  });
+
+});
+
+describe('call()', () => {
+
+  it('should return callback from callback', (done) => {
+    // setup
+    function sum(augend, addend, cb) {
+      cb(null, augend + addend);
+    }
+    // test
+    shifting.call(sum, 3, 4, (err, result) => {
+      expect(err).toBe(null);
+      expect(result).toBe(7);
+      done();
+    });
+  });
+
+  it('should return promise from callback', () => {
+    // setup
+    function sum(augend, addend, cb) {
+      cb(null, augend + addend);
+    }
+    // test
+    return shifting.call(sum, 3, 4)
+      .then((result) => {
+        expect(result).toBe(7);
+      });
+  });
+
+  it('should return callback from promise', (done) => {
+    // setup
+    function sum(augend, addend) {
+      return Promise.resolve(augend + addend);
+    }
+    // test
+    shifting.call(sum, 3, 4, (err, result) => {
+      expect(err).toBe(null);
+      expect(result).toBe(7);
+      done();
+    });
+  });
+
+  it('should return promise from promise', () => {
+    // setup
+    function sum(augend, addend) {
+      return Promise.resolve(augend + addend);
+    }
+    // test
+    return shifting.call(sum, 3, 4)
+      .then((result) => {
+        expect(result).toBe(7);
+      });
+  });
+
+  it('should allow omitting args', () => {
+    // setup
+    function helloWorld(cb) {
+      cb(null, 'Hello world!');
+    }
+    // test
+    return shifting.call(helloWorld)
+      .then((result) => {
+        expect(result).toBe('Hello world!');
+      });
+  });
+
+});
