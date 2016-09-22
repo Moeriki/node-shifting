@@ -10,7 +10,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js lib/ test/",
+    "lint": "eslint *.js lib/ __test__/",
     "pretest": "npm run lint",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
