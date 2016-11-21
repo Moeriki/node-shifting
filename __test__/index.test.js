@@ -4,7 +4,7 @@
 
 // modules
 
-const shifting = require('../lib');
+const shifting = require('../index');
 
 // private functions
 

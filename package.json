@@ -14,9 +14,9 @@
     "type": "git",
     "url": "git@github.com:Moeriki/node-shifting.git"
   },
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js lib/ __test__/",
+    "lint": "eslint *.js __test__/",
     "pretest": "npm run lint",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
