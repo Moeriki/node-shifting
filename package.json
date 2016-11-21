@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git@github.com:Moeriki/node-shifting.git"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "eslint *.js lib/ __test__/",
     "pretest": "npm run lint",
