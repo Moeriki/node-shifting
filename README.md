@@ -12,7 +12,7 @@ Shifting allows you to create APIs that support both callback-style and promises
 npm install --save shifting
 ```
 
-Shifting assumes a global `Promise` object for its inner workings. If that's no good, [open an issue](https://github.com/Moeriki/shifting/issues).
+Shifting uses [any promise](https://github.com/kevinbeaty/any-promise) to detect a Promise object. Check [their README](https://github.com/kevinbeaty/any-promise#any-promise) to plugin in your own Promise library.
 
 ## Implementation
 
