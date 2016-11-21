@@ -12,8 +12,6 @@ Shifting allows you to create APIs that support both callback-style and promises
 npm install --save shifting
 ```
 
-Shifting uses [any promise](https://github.com/kevinbeaty/any-promise) to detect a Promise object. Check [their README](https://github.com/kevinbeaty/any-promise#any-promise) to plugin in your own Promise library.
-
 ## Implementation
 
 **Wrapping a callback**
@@ -145,3 +143,7 @@ You need to call `shifting()` with either a callback function or `undefined|null
 **from(source) : source `…` is not a function, nor a Promise**
 
 See implementation examples above.
+
+## any-promise
+
+Shifting uses [any promise](https://github.com/kevinbeaty/any-promise) to detect a Promise object. Check [their README](https://github.com/kevinbeaty/any-promise#any-promise) to plugin in your own Promise library.
