@@ -2,13 +2,13 @@
 
 // modules
 
-var Promise = require('any-promise');
+const Promise = require('any-promise');
 
-var util = require('./util');
+const util = require('./util');
 
 // private variables
 
-var TROUBLESHOOTING = ' (see https://github.com/Moeriki/shifting#troubleshooting)';
+const TROUBLESHOOTING = ' (see https://github.com/Moeriki/shifting#troubleshooting)';
 
 // private funtions
 
@@ -44,14 +44,14 @@ function shifting(callback) {
 
   if (typeof callback !== 'function' && callback != null) {
     throw new TypeError(
-      'shifting(callback) : callback `' + callback + '` is not a function, nor null, nor undefined' + TROUBLESHOOTING
+      `shifting(callback) : callback \`${callback}\` is not a function, nor null, nor undefined${TROUBLESHOOTING}`
     );
   }
 
   function from(source) {
     if (typeof source !== 'function' && typeof source.then !== 'function') {
       throw new TypeError(
-        'from(source) : source `' + source + '` is not a function, nor a Promise' + TROUBLESHOOTING
+        `from(source) : source \`${source}\` is not a function, nor a Promise${TROUBLESHOOTING}`
       );
     }
 
@@ -73,11 +73,11 @@ function shifting(callback) {
     });
   }
 
-  return { from: from };
+  return { from };
 }
 
 shifting.apply = function apply(func, args, callback) {
-  var context = null;
+  let context = null;
   if (Array.isArray(func)) {
     context = func[0];
     func = func[1];
@@ -90,10 +90,10 @@ shifting.apply = function apply(func, args, callback) {
   }
 
   if (typeof func !== 'function') {
-    throw new TypeError(func + ' is not a function');
+    throw new TypeError(`${func} is not a function`);
   }
 
-  var promise;
+  let promise;
   if (util.fnLength(func) === args.length) {
     promise = func.apply(context, args);
     if (!promise || typeof promise.then !== 'function') {
@@ -105,7 +105,7 @@ shifting.apply = function apply(func, args, callback) {
       func.apply(context, args);
     });
   } else {
-    throw new Error('cannot determine how to call function' + TROUBLESHOOTING);
+    throw new Error(`cannot determine how to call function${ TROUBLESHOOTING}`);
   }
 
   return shifting(callback).from(promise);
@@ -113,9 +113,9 @@ shifting.apply = function apply(func, args, callback) {
 
 shifting.call = function call(func) {
   // take all args, except first (which is func)
-  var args = Array.prototype.slice.call(arguments, 1);
+  const args = Array.prototype.slice.call(arguments, 1);
   // if last args[…] is a funcion, assume it's a callback
-  var callback;
+  let callback;
   if (typeof args[args.length - 1] === 'function') {
     callback = args.pop();
   }

@@ -331,7 +331,7 @@ describe('apply()', () => {
 
 describe('call()', () => {
 
-  it('should return callback from callback', (done) => {
+  it('call should return callback from callback', (done) => {
     // setup
     function sum(augend, addend, cb) {
       cb(null, augend + addend);
@@ -344,7 +344,7 @@ describe('call()', () => {
     });
   });
 
-  it('should return promise from callback', () => {
+  it('call should return promise from callback', () => {
     // setup
     function sum(augend, addend, cb) {
       cb(null, augend + addend);
@@ -356,7 +356,7 @@ describe('call()', () => {
       });
   });
 
-  it('should return callback from promise', (done) => {
+  it('call should return callback from promise', (done) => {
     // setup
     function sum(augend, addend) {
       return Promise.resolve(augend + addend);
@@ -369,7 +369,7 @@ describe('call()', () => {
     });
   });
 
-  it('should return promise from promise', () => {
+  it('call should return promise from promise', () => {
     // setup
     function sum(augend, addend) {
       return Promise.resolve(augend + addend);
@@ -381,7 +381,7 @@ describe('call()', () => {
       });
   });
 
-  it('should allow omitting args', () => {
+  it('call should allow omitting args', () => {
     // setup
     function helloWorld(cb) {
       cb(null, 'Hello world!');

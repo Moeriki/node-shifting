@@ -6,4 +6,4 @@ function fnLength(func) {
   return func.length;
 }
 
-module.exports = { fnLength: fnLength };
+module.exports = { fnLength };
