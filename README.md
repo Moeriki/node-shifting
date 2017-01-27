@@ -108,7 +108,7 @@ shifting.call(sum, 3, 4, function (err, result) {
 If the called function requires binding you can do it as such.
 
 ```javascript
-const myAPI = {
+var myAPI = {
   hello: 'Bonjour',
   sayHello: function (name, callback) {
     callback(null, this.hello + ' ' + name + '!');

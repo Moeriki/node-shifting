@@ -4,11 +4,11 @@
 
 // modules
 
-const shifting = require('../index');
+var shifting = require('../index');
 
 // private functions
 
-const throwIdentity = (arg) => {
+var throwIdentity = (arg) => {
   throw new Error(`function should not have been called \`fn(${arg})\``);
 };
 
@@ -46,7 +46,7 @@ describe('from()', () => {
       });
     }
     // test
-    const result = test((err) => {
+    var result = test((err) => {
       expect(err.message).toBe('NOPE');
     });
     expect(result).toBe(undefined);
@@ -60,7 +60,7 @@ describe('from()', () => {
       });
     }
     // test
-    const result = test((err, value) => {
+    var result = test((err, value) => {
       expect(err).toBe(null);
       expect(value).toBe('VALUE');
     });
@@ -259,9 +259,9 @@ describe('apply()', () => {
 
   it('should throw if function is not a function', () => {
     // setup
-    const someObj = {};
+    var someObj = {};
     // test
-    const test = () => shifting.apply(someObj.func, []);
+    var test = () => shifting.apply(someObj.func, []);
     expect(test).toThrowError(/undefined is not a function/i);
   });
 
@@ -271,7 +271,7 @@ describe('apply()', () => {
       return Promise.resolve(augend + addend);
     }
     // test
-    const test = () => shifting.apply(sum, []);
+    var test = () => shifting.apply(sum, []);
     expect(test).toThrowError(/cannot determine how to call function/i);
   });
 
@@ -289,7 +289,7 @@ describe('apply()', () => {
 
   it('should allow passing a context with a function', () => {
     // setup
-    const log = {
+    var log = {
       world: 'world',
       say(hello, callback) {
         callback(null, `${hello} ${this.world}!`);

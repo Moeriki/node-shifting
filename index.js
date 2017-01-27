@@ -2,13 +2,13 @@
 
 // modules
 
-const Promise = require('any-promise');
+var Promise = require('any-promise');
 
-const util = require('./util');
+var util = require('./util');
 
 // private variables
 
-const TROUBLESHOOTING = ' (see https://github.com/Moeriki/shifting#troubleshooting)';
+var TROUBLESHOOTING = ' (see https://github.com/Moeriki/shifting#troubleshooting)';
 
 // private funtions
 
@@ -77,7 +77,7 @@ function shifting(callback) {
 }
 
 shifting.apply = function apply(func, args, callback) {
-  let context = null;
+  var context = null;
   if (Array.isArray(func)) {
     context = func[0];
     func = func[1];
@@ -93,7 +93,7 @@ shifting.apply = function apply(func, args, callback) {
     throw new TypeError(`${func} is not a function`);
   }
 
-  let promise;
+  var promise;
   if (util.fnLength(func) === args.length) {
     promise = func.apply(context, args);
     if (!promise || typeof promise.then !== 'function') {
@@ -113,9 +113,9 @@ shifting.apply = function apply(func, args, callback) {
 
 shifting.call = function call(func) {
   // take all args, except first (which is func)
-  const args = Array.prototype.slice.call(arguments, 1);
+  var args = Array.prototype.slice.call(arguments, 1);
   // if last args[…] is a funcion, assume it's a callback
-  let callback;
+  var callback;
   if (typeof args[args.length - 1] === 'function') {
     callback = args.pop();
   }
