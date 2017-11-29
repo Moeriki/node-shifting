@@ -95,7 +95,11 @@ shifting.apply = function apply(func, args, callback) {
 
   var promise;
   if (util.fnLength(func) === args.length) {
-    promise = func.apply(context, args);
+    try {
+      promise = func.apply(context, args);
+    } catch (err) {
+      promise = Promise.reject(err);
+    }
     if (!promise || typeof promise.then !== 'function') {
       promise = Promise.resolve(promise);
     }

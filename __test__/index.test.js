@@ -327,6 +327,19 @@ describe('apply()', () => {
       });
   });
 
+  it('should reject the promise if function throws', () => {
+    const expectedError = new Error();
+    // setup
+    function helloWorld() {
+      throw expectedError;
+    }
+    // test
+    return shifting.apply(helloWorld)
+      .then(fail)
+      .catch((err) => {
+        expect(err).toBe(expectedError);
+      });
+  });
 });
 
 describe('call()', () => {
