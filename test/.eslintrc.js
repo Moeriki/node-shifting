@@ -1,5 +1,1 @@
-module.exports = {
-  extends: [
-    'muriki/presets/jest',
-  ],
-};
+module.exports = { extends: 'plugin:muriki/test' };

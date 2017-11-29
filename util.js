@@ -1,7 +1,9 @@
 'use strict';
 
-// exports
-
+/**
+ * @param {function} func
+ * @return {number}
+ */
 function fnLength(func) {
   return func.length;
 }

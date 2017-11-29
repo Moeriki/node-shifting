@@ -1,14 +1,10 @@
-/* eslint no-magic-numbers:0 */
-
 'use strict';
 
-// modules
+const shifting = require('../index');
 
-var shifting = require('../index');
+// private
 
-// private functions
-
-var throwIdentity = (arg) => {
+const throwIdentity = (arg) => {
   throw new Error(`function should not have been called \`fn(${arg})\``);
 };
 
@@ -40,13 +36,13 @@ describe('from()', () => {
 
   it('should turn callback error into callback error', () => {
     // setup
-    function test(callback) {
-      return shifting(callback).from((cb) => {
-        cb(new Error('NOPE'));
+    function test(done) {
+      return shifting(done).from((callback) => {
+        callback(new Error('NOPE'));
       });
     }
     // test
-    var result = test((err) => {
+    const result = test((err) => {
       expect(err.message).toBe('NOPE');
     });
     expect(result).toBe(undefined);
@@ -54,13 +50,13 @@ describe('from()', () => {
 
   it('should turn callback value into callback value', () => {
     // setup
-    function test(callback) {
-      return shifting(callback).from((cb) => {
-        cb(null, 'VALUE');
+    function test(done) {
+      return shifting(done).from((callback) => {
+        callback(null, 'VALUE');
       });
     }
     // test
-    var result = test((err, value) => {
+    const result = test((err, value) => {
       expect(err).toBe(null);
       expect(value).toBe('VALUE');
     });
@@ -69,9 +65,9 @@ describe('from()', () => {
 
   it('should turn callback error into promise error', () => {
     // setup
-    function test(callback) {
-      return shifting(callback).from((cb) => {
-        cb(new Error('NOPE'));
+    function test(done) {
+      return shifting(done).from((callback) => {
+        callback(new Error('NOPE'));
       });
     }
     // test
@@ -84,9 +80,9 @@ describe('from()', () => {
 
   it('should turn callback value into promise value', () => {
     // setup
-    function test(callback) {
-      return shifting(callback).from((cb) => {
-        cb(null, 'VALUE');
+    function test(done) {
+      return shifting(done).from((callback) => {
+        callback(null, 'VALUE');
       });
     }
     // test
@@ -209,8 +205,8 @@ describe('apply()', () => {
 
   it('should return callback from callback', (done) => {
     // setup
-    function sum(augend, addend, cb) {
-      cb(null, augend + addend);
+    function sum(augend, addend, callback) {
+      callback(null, augend + addend);
     }
     // test
     shifting.apply(sum, [3, 4], (err, result) => {
@@ -222,8 +218,8 @@ describe('apply()', () => {
 
   it('should return promise from callback', () => {
     // setup
-    function sum(augend, addend, cb) {
-      cb(null, augend + addend);
+    function sum(augend, addend, callback) {
+      callback(null, augend + addend);
     }
     // test
     return shifting.apply(sum, [3, 4])
@@ -259,9 +255,9 @@ describe('apply()', () => {
 
   it('should throw if function is not a function', () => {
     // setup
-    var someObj = {};
+    const someObj = {};
     // test
-    var test = () => shifting.apply(someObj.func, []);
+    const test = () => shifting.apply(someObj.func, []);
     expect(test).toThrowError(/undefined is not a function/i);
   });
 
@@ -271,7 +267,7 @@ describe('apply()', () => {
       return Promise.resolve(augend + addend);
     }
     // test
-    var test = () => shifting.apply(sum, []);
+    const test = () => shifting.apply(sum, []);
     expect(test).toThrowError(/cannot determine how to call function/i);
   });
 
@@ -289,7 +285,7 @@ describe('apply()', () => {
 
   it('should allow passing a context with a function', () => {
     // setup
-    var log = {
+    const log = {
       world: 'world',
       say(hello, callback) {
         callback(null, `${hello} ${this.world}!`);
@@ -304,8 +300,8 @@ describe('apply()', () => {
 
   it('should allow omitting args with callback', (done) => {
     // setup
-    function helloWorld(cb) {
-      cb(null, 'Hello world!');
+    function helloWorld(callback) {
+      callback(null, 'Hello world!');
     }
     // test
     return shifting.apply(helloWorld, (err, result) => {
@@ -317,8 +313,8 @@ describe('apply()', () => {
 
   it('should allow omitting args with Promise', () => {
     // setup
-    function helloWorld(cb) {
-      cb(null, 'Hello world!');
+    function helloWorld(callback) {
+      callback(null, 'Hello world!');
     }
     // test
     return shifting.apply(helloWorld)
@@ -329,25 +325,27 @@ describe('apply()', () => {
 
   it('should reject the promise if function throws', () => {
     const expectedError = new Error();
+
     // setup
     function helloWorld() {
       throw expectedError;
     }
     // test
     return shifting.apply(helloWorld)
-      .then(fail)
+      .then(throwIdentity)
       .catch((err) => {
         expect(err).toBe(expectedError);
       });
   });
+
 });
 
 describe('call()', () => {
 
   it('call should return callback from callback', (done) => {
     // setup
-    function sum(augend, addend, cb) {
-      cb(null, augend + addend);
+    function sum(augend, addend, callback) {
+      callback(null, augend + addend);
     }
     // test
     shifting.call(sum, 3, 4, (err, result) => {
@@ -359,8 +357,8 @@ describe('call()', () => {
 
   it('call should return promise from callback', () => {
     // setup
-    function sum(augend, addend, cb) {
-      cb(null, augend + addend);
+    function sum(augend, addend, callback) {
+      callback(null, augend + addend);
     }
     // test
     return shifting.call(sum, 3, 4)
@@ -396,8 +394,8 @@ describe('call()', () => {
 
   it('call should allow omitting args', () => {
     // setup
-    function helloWorld(cb) {
-      cb(null, 'Hello world!');
+    function helloWorld(callback) {
+      callback(null, 'Hello world!');
     }
     // test
     return shifting.call(helloWorld)
