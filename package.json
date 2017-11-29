@@ -16,7 +16,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint *.js __test__/",
+    "lint": "eslint *.js test/",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "precommit": "lint-staged",
