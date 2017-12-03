@@ -133,7 +133,6 @@ Pass a source to Shifting. If `shifting()` (see above) received a callback funct
 
 **`shifting.call(function|array<context, function>[, args...[, callback]])`** ▶︎ return `Promise|undefined`
 
-<a name="troubleshooting" />
 ## Troubleshooting
 
 **shifting(callback) : callback `…` is not a function, nor null, nor undefined**
