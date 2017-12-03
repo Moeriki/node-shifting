@@ -2,8 +2,6 @@
 
 const Promise = require('any-promise');
 
-const util = require('./util');
-
 // private
 
 const TROUBLESHOOTING = ' (see https://github.com/Moeriki/shifting#troubleshooting)';
@@ -30,7 +28,7 @@ function callbackTo(resolve, reject) {
  */
 function extractSourceReturnValue(source, resolve, reject) {
   if (typeof source === 'function') {
-    if (util.fnLength(source) === 0) {
+    if (source.length === 0) {
       try {
         resolve(source());
       } catch (err) {
