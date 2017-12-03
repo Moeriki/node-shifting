@@ -77,10 +77,14 @@ function shifting(callback) {
       extractSourceReturnValue(
         source,
         function onResolved(value) {
-          callback(null, value);
+          setImmediate(() => {
+            callback(null, value);
+          });
         },
         function onRejected(err) {
-          callback(err);
+          setImmediate(() => {
+            callback(err);
+          });
         }
       );
       return undefined;
