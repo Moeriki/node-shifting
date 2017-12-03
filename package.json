@@ -12,6 +12,9 @@
   "license": "MIT",
   "repository": "https://github.com/Moeriki/node-shifting",
   "main": "index.js",
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "lint": "eslint *.js test/",
     "test": "jest",
