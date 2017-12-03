@@ -21,8 +21,7 @@
   ],
   "scripts": {
     "lint": "eslint *.js test/",
-    "test": "jest",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "test": "npm run lint && jest --coverage",
     "precommit": "lint-staged",
     "pre[ush]": "npm run test"
   },
