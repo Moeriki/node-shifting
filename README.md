@@ -115,7 +115,7 @@ var myAPI = {
   }
 }
 
-say.call([myAPI, myAPI.sayHello], 'World')
+shifting.call([myAPI, myAPI.sayHello], 'World')
   .then(console.log); // logs 'Bonjour World!'
 ```
 
